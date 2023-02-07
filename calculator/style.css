@@ -1,0 +1,80 @@
+.main {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+}
+
+.calculator {
+  font-size: 24px;
+  width: 400px;
+  padding: 2rem;
+  color: white;
+  background-color: black;
+}
+
+.result {
+  display: flex;
+  height: 100px;
+  justify-content: flex-end;
+  align-items: flex-end;
+  font-size: 3em;
+}
+
+.btns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 20px;
+  gap: 15px;
+}
+
+.item {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  border-radius: 100%;
+  cursor: pointer;
+  background-color: rgb(49, 49, 49);
+}
+
+.item:nth-child(1),
+.item:nth-child(2),
+.item:nth-child(3) {
+  color: black;
+  background-color: rgb(160, 160, 160);
+}
+
+.item:nth-child(4),
+.item:nth-child(8),
+.item:nth-child(12),
+.item:nth-child(16),
+.item:nth-child(19) {
+  background-color: rgb(246, 153, 6);
+}
+
+.item:nth-child(4).clicked,
+.item:nth-child(8).clicked,
+.item:nth-child(12).clicked,
+.item:nth-child(16).clicked,
+.item:nth-child(19).clicked {
+  color: rgb(246, 153, 6);
+  background-color: white;
+}
+
+.zero {
+  grid-column: 1/3;
+  justify-content: flex-start;
+  border-radius: 50px;
+  width: 220px;
+}
+.zero::before {
+  content: " ";
+  margin-left: 20px;
+}

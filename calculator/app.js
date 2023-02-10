@@ -11,7 +11,7 @@ let calc;
 function Calculator(sign, n1, n2) {
   calc = n1;
   if (sign === "+") {
-    calc += n2;
+    n1 = calc;
   } else if (sign === "-") {
     calc -= n2;
   } else if (sign === "*") {
@@ -47,12 +47,6 @@ function setCalc(e) {
       sign = "/";
       break;
 
-    case "reset":
-      n1 = 0;
-      n2 = 0;
-      result.innerHTML = n2;
-      break;
-
     case "=":
       Calculator(sign, n1, n2);
       break;
@@ -66,6 +60,17 @@ function setCalc(e) {
         result.innerHTML = n1;
       }
 
+      break;
+
+    case "reset":
+      n1 = 0;
+      n2 = 0;
+      sign = undefined;
+      result.innerHTML = n2;
+      break;
+
+    case "=":
+      Calculator(sign, n1, n2);
       break;
 
     default:

@@ -5,11 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="reset.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
     <title>ToDO-List</title>
   </head>
   <body>
-    <section class="main"></section>
+    <section class="main">
+      <div class="todo">
+        <h1>ToDo-List</h1>
+        <div class="input">
+          <form action=""><input type="text" /><button class="btn">UP</button></form>
+        </div>
+        <div class="list">
+          <ul class="lists">
+            <li class="item check"><input type="checkbox"></input><span>Lorem ipsum, dolor sit amet</span></li>
+            <li class="item"><input type="checkbox"></input><span>dsafasdf</span></li>
+            <li class="item"><input type="checkbox"></input><span>dsafasdf</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
     <script src="app.js"></script>
   </body>
 </html>

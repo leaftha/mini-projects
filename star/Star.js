@@ -1,11 +1,12 @@
 import CanvasSetting from "./CanvasSetting.js";
 
 export default class Star extends CanvasSetting {
-  constructor(x, y, speed) {
+  constructor(x, y, speed, color) {
     super();
     this.x = x;
     this.y = y;
     this.speed = speed;
+    this.color = color;
   }
 
   update() {
@@ -14,7 +15,7 @@ export default class Star extends CanvasSetting {
   }
 
   draw() {
-    this.ctx.fillStyle = "white";
+    this.ctx.fillStyle = this.color;
     this.ctx.beginPath();
     this.ctx.arc(this.x, this.y, 1, 0, Math.PI * 2);
     this.ctx.fill();

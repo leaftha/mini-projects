@@ -2,8 +2,6 @@ import CanvasSetting from "./CanvasSetting.js";
 import Star from "./Star.js";
 import { randomNumBetween } from "./utils.js";
 
-let isfalse = false;
-
 class Canvas extends CanvasSetting {
   constructor() {
     super();
@@ -55,9 +53,7 @@ class Canvas extends CanvasSetting {
         this.ctx.fillStyle = "#000000" + 40;
       }
       this.ctx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
-
       this.createStar();
-
       this.stars.forEach((star, index) => {
         star.update();
         star.draw();
@@ -71,11 +67,23 @@ class Canvas extends CanvasSetting {
           this.stars.splice(index, 1);
         }
       });
+      if (!isfalse) {
+        img.src = "./img/city.png";
+        this.ctx.drawImage(img, 0, 0, this.canvasWidth, this.canvasHeight);
+      } else {
+        img.src = "./img/night-city.png";
+        this.ctx.drawImage(img, 0, 0, this.canvasWidth, this.canvasHeight);
+      }
     };
     requestAnimationFrame(frame);
   }
 }
 const canvas = new Canvas();
+const img = new Image();
+
+let imgData;
+
+let isfalse = false;
 
 window.addEventListener("load", () => {
   canvas.init();

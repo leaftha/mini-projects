@@ -1,6 +1,12 @@
+import Particle from "./Particle.js";
+
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 const dpr = window.devicePixelRatio;
+
+let interval = 1000 / 60;
+
+let particles = [];
 
 function init() {
   let canvasWidth = innerWidth;
@@ -14,7 +20,15 @@ function init() {
   ctx.scale(dpr, dpr);
 }
 
-let interval = 1000 / 60;
+function createParticle(e) {
+  let x = e.pageX;
+  let y = e.pageY;
+
+  const NUM = 1;
+  for (let i = 0; i < NUM; i++) {
+    particles.push(new Particle(x, y));
+  }
+}
 
 function render() {
   let now, delta;
@@ -24,6 +38,11 @@ function render() {
     now = Date.now();
     delta = now - then;
     if (delta < interval) return;
+
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw(ctx);
+    }
 
     then = now - (delta % interval);
   };
@@ -37,4 +56,8 @@ window.addEventListener("load", () => {
 
 window.addEventListener("resize", () => {
   init();
+});
+
+window.addEventListener("click", (e) => {
+  createParticle(e);
 });

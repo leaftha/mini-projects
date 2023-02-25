@@ -14,8 +14,25 @@ function init() {
   ctx.scale(dpr, dpr);
 }
 
+let interval = 1000 / 60;
+
+function render() {
+  let now, delta;
+  let then = Date.now();
+  const frams = () => {
+    requestAnimationFrame(frams);
+    now = Date.now();
+    delta = now - then;
+    if (delta < interval) return;
+
+    then = now - (delta % interval);
+  };
+  requestAnimationFrame(frams);
+}
+
 window.addEventListener("load", () => {
   init();
+  render();
 });
 
 window.addEventListener("resize", () => {

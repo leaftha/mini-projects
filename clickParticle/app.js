@@ -44,11 +44,17 @@ function render() {
       particles[i].update();
       particles[i].draw(ctx);
 
-      if (particles[i].x > canvasWidth - 50 || particles[i].x < 0) {
+      if (
+        particles[i].x > canvasWidth - particles[i].ball ||
+        particles[i].x < 0
+      ) {
         particles[i].vx *= -1;
       }
 
-      if (particles[i].y > canvasHeight - 50 || particles[i].y < 0) {
+      if (
+        particles[i].y > canvasHeight - particles[i].ball ||
+        particles[i].y < 0
+      ) {
         particles[i].vy *= -1;
       }
     }

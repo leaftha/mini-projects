@@ -11,6 +11,8 @@ export default class Particle {
 
     this.vx = randomNumBetween(-20, 20);
     this.vy = randomNumBetween(-20, 20);
+
+    this.ball = randomNumBetween(1, 50);
   }
 
   update() {
@@ -21,7 +23,7 @@ export default class Particle {
   draw(ctx) {
     ctx.beginPath();
     ctx.fillStyle = `rgb(${this.r},${this.b},${this.g})`;
-    ctx.arc(this.x, this.y, 50, 0, Math.PI * 2);
+    ctx.arc(this.x, this.y, this.ball, 0, Math.PI * 2);
     ctx.fill();
     ctx.closePath();
   }

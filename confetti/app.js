@@ -1,3 +1,5 @@
+import Particle from "./Particle.js";
+
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 
@@ -6,6 +8,8 @@ let canvasWidth = innerWidth;
 let canvasHeight = innerHeight;
 
 const interval = 1000 / 60;
+
+let partices = [];
 
 function init() {
   canvasWidth = innerWidth;
@@ -17,6 +21,12 @@ function init() {
   ctx.scale(dpr, dpr);
 }
 
+function confetti(ex, ey, count) {
+  for (let i = 0; i < count; i++) {
+    partices.push(new Particle(ex, ey));
+  }
+}
+
 function render() {
   let now, delta;
   let then = Date.now();
@@ -26,8 +36,12 @@ function render() {
     now = Date.now();
     delta = now - then;
     if (delta < interval) return;
-    ctx.fillStyle = "red";
-    ctx.fillRect(10, 10, 100, 100);
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+    for (let i = partices.length - 1; i >= 0; i--) {
+      partices[i].update();
+      partices[i].draw(ctx);
+    }
 
     then = now - (delta % interval);
   };
@@ -37,6 +51,13 @@ function render() {
 window.addEventListener("load", () => {
   init();
   render();
+});
+
+window.addEventListener("click", (e) => {
+  let ex = e.clientX;
+  let ey = e.clientY;
+  const count = 20;
+  confetti(ex, ey, count);
 });
 
 window.addEventListener("resize", init);

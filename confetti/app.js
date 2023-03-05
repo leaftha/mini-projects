@@ -41,7 +41,6 @@ function render() {
     for (let i = partices.length - 1; i >= 0; i--) {
       partices[i].update();
       partices[i].draw(ctx);
-
       if (partices[i].opacity < 0) {
         partices.splice(i, 1);
       }
@@ -60,7 +59,7 @@ window.addEventListener("load", () => {
 window.addEventListener("click", (e) => {
   let ex = e.clientX;
   let ey = e.clientY;
-  const count = 100;
+  const count = 100 ;
   confetti(ex, ey, count);
 });
 

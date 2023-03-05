@@ -2,8 +2,8 @@ import { randomNumBetween } from "./utils.js";
 
 export default class Particle {
   constructor(x, y) {
-    this.width = 10;
-    this.height = 10;
+    this.width = 12;
+    this.height = 12;
 
     this.x = x - this.width / 2;
     this.y = y - this.height / 2;
@@ -20,6 +20,12 @@ export default class Particle {
 
     this.gracity = 0.5;
     this.friction = 0.89;
+
+    this.rotation = randomNumBetween(0, 360);
+    this.rotationDelta = randomNumBetween(-1, 1);
+
+    this.widthDelta = randomNumBetween(0, 360);
+    this.heightDelta = randomNumBetween(0, 360);
   }
 
   update() {
@@ -31,10 +37,27 @@ export default class Particle {
     this.x += this.vx;
     this.y += this.vy;
     this.opacity -= 0.005;
+
+    this.rotation += this.rotationDelta;
+
+    this.widthDelta += 2;
+    this.heightDelta += 2;
   }
 
   draw(ctx) {
+    ctx.translate(this.x + this.width * 1.2, this.y + this.height * 1.2);
+    ctx.rotate((Math.PI / 180) * this.rotation);
+    ctx.translate(-this.x - this.width, -this.y - this.height);
+
     ctx.fillStyle = `rgba(${this.r},${this.g},${this.b},${this.opacity})`;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+    ctx.fillRect(
+      this.x,
+      this.y,
+      this.width * Math.cos((Math.PI / 180) * this.widthDelta),
+      this.height * Math.sin((Math.PI / 180) * this.heightDelta)
+    );
+
+    ctx.resetTransform();
   }
+
 }

@@ -5,6 +5,8 @@ const dpr = window.devicePixelRatio > 1 ? 2 : 1;
 let canvasWidth = innerWidth;
 let canvasHeight = innerHeight;
 
+const interval = 1000 / 60;
+
 function init() {
   canvasWidth = innerWidth;
   canvasHeight = innerHeight;
@@ -15,8 +17,26 @@ function init() {
   ctx.scale(dpr, dpr);
 }
 
+function render() {
+  let now, delta;
+  let then = Date.now();
+
+  const frame = () => {
+    requestAnimationFrame(frame);
+    now = Date.now();
+    delta = now - then;
+    if (delta < interval) return;
+    ctx.fillStyle = "red";
+    ctx.fillRect(10, 10, 100, 100);
+
+    then = now - (delta % interval);
+  };
+  requestAnimationFrame(frame);
+}
+
 window.addEventListener("load", () => {
   init();
+  render();
 });
 
 window.addEventListener("resize", init);

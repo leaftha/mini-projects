@@ -1,8 +1,7 @@
 import Vector from "./Vector.js";
-<<<<<<< HEAD
+
 import Dot from "./Dot.js";
-=======
->>>>>>> 22e0663e1f0e124bcabd8551f43cfeee7f9a538f
+import Stick from "./Stick.js";
 
 export default class App {
   static width = innerWidth;
@@ -17,11 +16,19 @@ export default class App {
     this.resize();
     window.addEventListener("resize", this.resize.bind(this));
 
-<<<<<<< HEAD
-    this.dots = [new Dot(500, 100), new Dot(700, 100)];
-=======
-    const x = new Vector(10, 10);
->>>>>>> 22e0663e1f0e124bcabd8551f43cfeee7f9a538f
+    this.dots = [
+      new Dot(500, 100),
+      new Dot(700, 100),
+      new Dot(800, 100),
+      new Dot(900, 100),
+    ];
+    this.sticks = [
+      new Stick(this.dots[0], this.dots[1]),
+      new Stick(this.dots[1], this.dots[2]),
+      new Stick(this.dots[2], this.dots[3]),
+    ];
+    this.dots[0].pinned = true;
+    this.dots[3].mass = 10;
   }
 
   resize() {
@@ -43,17 +50,17 @@ export default class App {
       delta = now - then;
       if (delta < App.interval) return;
       then = now - (delta & App.interval);
-
-<<<<<<< HEAD
-      // this.ctx.clearRect(0, 0, App.width, App.height);
+      this.ctx.clearRect(0, 0, App.width, App.height);
 
       this.dots.forEach((dot) => {
         dot.update();
         dot.draw(this.ctx);
       });
-=======
-      this.ctx.clearRect(0, 0, App.width, App.height);
->>>>>>> 22e0663e1f0e124bcabd8551f43cfeee7f9a538f
+
+      this.sticks.forEach((stick) => {
+        stick.update();
+        stick.draw(this.ctx);
+      });
     };
     requestAnimationFrame(frame);
   }

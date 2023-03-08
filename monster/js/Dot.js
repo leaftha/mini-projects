@@ -7,9 +7,14 @@ export default class Dot {
 
     this.gravity = new Vector(0, 1);
     this.friction = 0.97;
+
+    this.pinned = false;
+
+    this.mass = 1;
   }
 
   update() {
+    if (this.pinned) return;
     let vel = Vector.sub(this.pos, this.oldPost);
     this.oldPost.setXY(this.pos.x, this.pos.y);
     vel.mult(this.friction);
@@ -21,7 +26,7 @@ export default class Dot {
   draw(ctx) {
     ctx.fillStyle = "#111";
     ctx.beginPath();
-    ctx.arc(this.pos.x, this.pos.y, 10, 0, Math.PI * 2);
+    ctx.arc(this.pos.x, this.pos.y, 5, 0, Math.PI * 2);
     ctx.fill();
     ctx.closePath();
   }

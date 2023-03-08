@@ -1,6 +1,5 @@
 import Mouse from "./Mouse.js";
 import Rope from "./Rope.js";
-import { randomNumBetween } from "./utils.js";
 
 export default class App {
   static width = innerWidth;
@@ -45,7 +44,7 @@ export default class App {
         gap: 20,
       });
       Xindex += add;
-      if (Xindex > App.width) {
+      if (Xindex >= App.width) {
         Xindex = 0;
         add += 50;
         Yindex += 300;

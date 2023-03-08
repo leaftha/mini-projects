@@ -1,5 +1,9 @@
 import Vector from "./Vector.js";
+<<<<<<< HEAD
 import Mouse from "./Mouse.js";
+=======
+
+>>>>>>> 422076e0af038425ad97643d0f6639ee89c3d3eb
 import Dot from "./Dot.js";
 import Stick from "./Stick.js";
 
@@ -29,8 +33,11 @@ export default class App {
     ];
     this.dots[0].pinned = true;
     this.dots[3].mass = 10;
+<<<<<<< HEAD
 
     this.mouse = new Mouse(this.canvas);
+=======
+>>>>>>> 422076e0af038425ad97643d0f6639ee89c3d3eb
   }
 
   resize() {
@@ -53,6 +60,7 @@ export default class App {
       if (delta < App.interval) return;
       then = now - (delta & App.interval);
       this.ctx.clearRect(0, 0, App.width, App.height);
+<<<<<<< HEAD
 
       this.dots.forEach((dot) => {
         dot.update(this.mouse);
@@ -61,12 +69,18 @@ export default class App {
       this.sticks.forEach((stick) => {
         stick.update();
       });
+=======
+>>>>>>> 422076e0af038425ad97643d0f6639ee89c3d3eb
 
       this.dots.forEach((dot) => {
         dot.draw(this.ctx);
       });
 
       this.sticks.forEach((stick) => {
+<<<<<<< HEAD
+=======
+        stick.update();
+>>>>>>> 422076e0af038425ad97643d0f6639ee89c3d3eb
         stick.draw(this.ctx);
       });
     };

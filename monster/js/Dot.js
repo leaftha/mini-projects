@@ -13,7 +13,11 @@ export default class Dot {
     this.mass = 1;
   }
 
+<<<<<<< HEAD
   update(mouse) {
+=======
+  update() {
+>>>>>>> 422076e0af038425ad97643d0f6639ee89c3d3eb
     if (this.pinned) return;
     let vel = Vector.sub(this.pos, this.oldPost);
     this.oldPost.setXY(this.pos.x, this.pos.y);

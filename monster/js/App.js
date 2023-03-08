@@ -1,5 +1,8 @@
 import Vector from "./Vector.js";
+<<<<<<< HEAD
 import Dot from "./Dot.js";
+=======
+>>>>>>> 22e0663e1f0e124bcabd8551f43cfeee7f9a538f
 
 export default class App {
   static width = innerWidth;
@@ -14,7 +17,11 @@ export default class App {
     this.resize();
     window.addEventListener("resize", this.resize.bind(this));
 
+<<<<<<< HEAD
     this.dots = [new Dot(500, 100), new Dot(700, 100)];
+=======
+    const x = new Vector(10, 10);
+>>>>>>> 22e0663e1f0e124bcabd8551f43cfeee7f9a538f
   }
 
   resize() {
@@ -37,12 +44,16 @@ export default class App {
       if (delta < App.interval) return;
       then = now - (delta & App.interval);
 
+<<<<<<< HEAD
       // this.ctx.clearRect(0, 0, App.width, App.height);
 
       this.dots.forEach((dot) => {
         dot.update();
         dot.draw(this.ctx);
       });
+=======
+      this.ctx.clearRect(0, 0, App.width, App.height);
+>>>>>>> 22e0663e1f0e124bcabd8551f43cfeee7f9a538f
     };
     requestAnimationFrame(frame);
   }

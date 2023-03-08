@@ -21,6 +21,7 @@ export default class Dot {
     vel.add(this.gravity);
 
     let { x: dx, y: dy } = Vector.sub(mouse.pos, this.pos);
+
     const dist = Math.sqrt(dx * dx + dy * dy);
     const direction = new Vector(dx / dist, dy / dist);
 

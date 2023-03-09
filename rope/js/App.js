@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import Dot from "./Dot.js";
+=======
+import Vector from "./Vector";
+>>>>>>> ef24870c24fe39204d6aa80743cf64ffb6a94a28
 
 export default class App {
   static width = innerWidth;
@@ -36,11 +40,16 @@ export default class App {
       delta = now - then;
       if (delta < App.interval) return;
       then = now - (delta % App.interval);
+<<<<<<< HEAD
 
       this.dots.forEach((dot) => {
         dot.update();
         dot.draw(this.ctx);
       });
+=======
+      this.ctx.fillRect(100, 100, 100, 100);
+      console.log(new Vector(100, 100));
+>>>>>>> ef24870c24fe39204d6aa80743cf64ffb6a94a28
     };
     requestAnimationFrame(frame);
   }

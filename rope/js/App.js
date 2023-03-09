@@ -32,6 +32,7 @@ export default class App {
       delta = now - then;
       if (delta < App.interval) return;
       then = now - (delta % App.interval);
+      this.ctx.fillRect(100, 100, 100, 100);
     };
     requestAnimationFrame(frame);
   }

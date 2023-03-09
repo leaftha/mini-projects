@@ -2,6 +2,7 @@ export default class App {
   static width = innerWidth;
   static height = innerHeight;
   static dpr = devicePixelRatio;
+  static interval = 1000 / 60;
 
   constructor() {
     this.canvas = document.querySelector("canvas");
@@ -22,5 +23,16 @@ export default class App {
     this.ctx.scale(App.dpr, App.dpr);
   }
 
-  render() {}
+  render() {
+    let now, delta;
+    let then = Date.now();
+    const frame = () => {
+      requestAnimationFrame(frame);
+      now = Date.now();
+      delta = now - then;
+      if (delta < App.interval) return;
+      then = now - (delta % App.interval);
+    };
+    requestAnimationFrame(frame);
+  }
 }

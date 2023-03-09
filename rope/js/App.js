@@ -1,3 +1,5 @@
+import Vector from "./Vector";
+
 export default class App {
   static width = innerWidth;
   static height = innerHeight;
@@ -33,6 +35,7 @@ export default class App {
       if (delta < App.interval) return;
       then = now - (delta % App.interval);
       this.ctx.fillRect(100, 100, 100, 100);
+      console.log(new Vector(100, 100));
     };
     requestAnimationFrame(frame);
   }

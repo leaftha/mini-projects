@@ -1,0 +1,10 @@
+diff a/rope/js/App.js b/rope/js/App.js	(rejected hunks)
+@@ -1,8 +0,4 @@
+-<<<<<<< HEAD
+ import Dot from "./Dot.js";
+-=======
+-import Vector from "./Vector";
+->>>>>>> ef24870c24fe39204d6aa80743cf64ffb6a94a28
+ 
+ export default class App {
+   static width = innerWidth;

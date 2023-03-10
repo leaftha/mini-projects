@@ -14,7 +14,12 @@ export default class App {
     this.resize();
     window.addEventListener("resize", this.resize.bind(this));
 
-    this.dots = [new Dot(500, 100), new Dot(600, 100)];
+    this.dots = [
+      new Dot(500, 100),
+      new Dot(600, 100),
+      new Dot(500, 100),
+      new Dot(600, 100),
+    ];
     this.sticks = [new Stick(this.dots[0], this.dots[1])];
     this.dots[0].pinned = true;
   }

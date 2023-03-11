@@ -1,5 +1,6 @@
 import Dot from "./Dot.js";
 import Stick from "./Stick.js";
+import Mouse from "./Mouse.js";
 
 export default class App {
   static width = innerWidth;
@@ -26,6 +27,8 @@ export default class App {
       new Stick(this.dots[2], this.dots[3]),
     ];
     this.dots[0].pinned = true;
+
+    this.mouse = new Mouse(this.canvas);
   }
 
   resize() {
@@ -51,12 +54,16 @@ export default class App {
       this.ctx.clearRect(0, 0, App.width, App.height);
 
       this.dots.forEach((dot) => {
-        dot.update();
         dot.draw(this.ctx);
       });
       this.sticks.forEach((stick) => {
-        stick.update();
         stick.draw(this.ctx);
+      });
+      this.dots.forEach((dot) => {
+        dot.update(this.mouse);
+      });
+      this.sticks.forEach((stick) => {
+        stick.update();
       });
     };
     requestAnimationFrame(frame);

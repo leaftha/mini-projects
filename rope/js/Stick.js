@@ -16,13 +16,17 @@ export default class Stick {
     const ax = diff * dx * this.tension;
     const ay = diff * dy * this.tension;
 
+    const m = this.startPoint.mass + this.endPoint.mass;
+    const m1 = this.endPoint.mass / m;
+    const m2 = this.startPoint.mass / m;
+
     if (!this.startPoint.pinned) {
-      this.startPoint.pos.x += ax;
-      this.startPoint.pos.y += ay;
+      this.startPoint.pos.x += ax * m1;
+      this.startPoint.pos.y += ay * m1;
     }
     if (!this.endPoint.pinned) {
-      this.endPoint.pos.x -= ax;
-      this.endPoint.pos.y -= ay;
+      this.endPoint.pos.x -= ax * m2;
+      this.endPoint.pos.y -= ay * m2;
     }
   }
 

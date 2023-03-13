@@ -2,8 +2,10 @@ export default class Stick {
   constructor(p1, p2) {
     this.startPoint = p1;
     this.endPoint = p2;
+
     this.length = this.startPoint.pos.dist(this.endPoint.pos);
-    this.tension = 0.4;
+
+    this.tension = 0.3;
   }
 
   update() {

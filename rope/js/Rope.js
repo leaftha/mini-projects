@@ -6,17 +6,23 @@ export default class Rope {
     this.x = config.x || 0;
     this.y = config.y || 0;
     this.segements = config.segements || 10;
-    this.gap = config.gap || 50;
+    this.gap = config.gap || 80;
     this.iterations = config.iterations || 10;
 
     this.dots = [];
     this.sticks = [];
-
     this.create();
   }
 
   pin(index) {
     this.dots[index].pinned = true;
+  }
+
+  check() {
+    const dist = this.dots[0].pos.dist(this.dots[1].pos);
+    if (dist / this.sticks[0].length > 1.4) {
+      this.dots[0].pinned = false;
+    }
   }
 
   create() {
@@ -25,11 +31,12 @@ export default class Rope {
     }
 
     for (let i = 0; i < this.segements - 1; i++) {
-      this.dots.push(new Stick(this.dots[i], this.dots[i + 1]));
+      this.sticks.push(new Stick(this.dots[i], this.dots[i + 1]));
     }
   }
 
   update(mouse) {
+    this.check();
     this.dots.forEach((dot) => {
       dot.update(mouse);
     });

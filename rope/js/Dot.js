@@ -36,9 +36,10 @@ export default class Dot {
   }
 
   draw(ctx) {
-    ctx.beginPath();
-    ctx.arc(this.pos.x, this.pos.y, 10, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.closePath();
+    // ctx.beginPath();
+    // ctx.arc(this.pos.x, this.pos.y, 1, 0, Math.PI * 2);
+    // ctx.fill();
+    // ctx.closePath();
+    ctx.fillRect(this.pos.x, this.pos.y, 1, 1);
   }
 }

@@ -15,9 +15,7 @@ const Todo = () => {
     <div className={classes.body}>
       <h1>React ToDo App</h1>
       <Inputwindow updata={upinputData} />
-      <ul>
-        <Todolist />
-      </ul>
+      <Todolist text={text} />
     </div>
   );
 };

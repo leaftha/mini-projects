@@ -1,9 +1,26 @@
+import { useState } from "react";
 import classes from "../styles/Inputwindow.module.css";
 
-const Inputwindow = () => {
+const Inputwindow = ({ updata }) => {
+  const [input, setInput] = useState("");
+
+  const inputHandler = (e) => {
+    setInput(e.target.value);
+  };
+
+  const submitHanler = (e) => {
+    e.preventDefault();
+    updata(input);
+    setInput("");
+  };
   return (
-    <form>
-      <input className={classes.input} type="text" />
+    <form onSubmit={submitHanler}>
+      <input
+        className={classes.input}
+        type="text"
+        onChange={inputHandler}
+        value={input}
+      />
       <button>Add</button>
     </form>
   );

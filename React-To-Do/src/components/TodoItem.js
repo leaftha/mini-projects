@@ -1,5 +1,10 @@
-const TodoItem = ({ children }) => {
-  return <li>{children}</li>;
+const TodoItem = ({ key, children }) => {
+  console.log(key);
+  return (
+    <li>
+      {children} - <button>X</button>
+    </li>
+  );
 };
 
 export default TodoItem;

@@ -1,11 +1,10 @@
-import uniqid from "uniqid";
-
 const Todolist = ({ text }) => {
+  const deletHandler = () => {};
   return (
     <ul>
       {text.map((data) => (
-        <li id={uniqid()} key={uniqid()}>
-          {data} -- <button>X</button>
+        <li key={data.id}>
+          {data.text} -- <button onClick={deletHandler}>X</button>
         </li>
       ))}
     </ul>

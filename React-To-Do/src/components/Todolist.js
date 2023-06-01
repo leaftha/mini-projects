@@ -1,11 +1,12 @@
-import TodoItem from "./TodoItem";
+import uniqid from "uniqid";
 
-const Todolist = ({ key, text }) => {
-  console.log(text);
+const Todolist = ({ text }) => {
   return (
     <ul>
       {text.map((data) => (
-        <TodoItem key={key}>{data}</TodoItem>
+        <li id={uniqid()} key={uniqid()}>
+          {data} -- <button>X</button>
+        </li>
       ))}
     </ul>
   );

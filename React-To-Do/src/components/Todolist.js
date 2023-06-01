@@ -1,11 +1,12 @@
-const Todolist = ({ text }) => {
-  const deletHandler = () => {};
+import TodoItem from "./TodoItem";
+
+const Todolist = ({ delet, text }) => {
   return (
     <ul>
       {text.map((data) => (
-        <li key={data.id}>
-          {data.text} -- <button onClick={deletHandler}>X</button>
-        </li>
+        <TodoItem onDelet={delet} key={data.id} id={data.id}>
+          {data.text}
+        </TodoItem>
       ))}
     </ul>
   );

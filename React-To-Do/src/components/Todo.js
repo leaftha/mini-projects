@@ -14,11 +14,18 @@ const Todo = () => {
     });
   };
 
+  const deletHandler = (id) => {
+    setText((prev) => {
+      const updataData = prev.filter((text) => text.id !== id);
+      return updataData;
+    });
+  };
+
   return (
     <div className={classes.body}>
       <h1>React ToDo App</h1>
       <Inputwindow updata={upinputData} />
-      <Todolist text={text} />
+      <Todolist delet={deletHandler} text={text} />
     </div>
   );
 };

@@ -1,0 +1,10 @@
+.ul {
+  margin-top: 20px;
+  width: 100%;
+  align-items: center;
+  background: #f8e8ee;
+}
+
+.item {
+  border: 5px solid black;
+}

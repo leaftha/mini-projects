@@ -14,7 +14,7 @@ const Inputwindow = ({ updata }) => {
     setInput("");
   };
   return (
-    <form onSubmit={submitHanler}>
+    <form className={classes.form} onSubmit={submitHanler}>
       <input
         className={classes.input}
         type="text"

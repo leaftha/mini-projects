@@ -10,6 +10,7 @@ const Inputwindow = ({ updata }) => {
 
   const submitHanler = (e) => {
     e.preventDefault();
+    if (input === "") return;
     updata(input);
     setInput("");
   };

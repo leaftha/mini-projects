@@ -7,6 +7,7 @@ const Confetti = () => {
         const canvasParent = canvas.parentNode;
         const ctx = canvas.getContext('2d');
         const dpr = window.devicePixelRatio > 1 ? 2 : 1;
+        const interval = 1000 / 60;
 
         let canvasWidth, canvasHeight;
 
@@ -19,6 +20,23 @@ const Confetti = () => {
             canvas.height = canvasHeight;
             ctx.scale(dpr, dpr);
         }
+
+        function render() {
+            let now, delta;
+            let then = Date.now();
+
+            const frame = () => {
+                requestAnimationFrame(frame);
+                now = Date.now();
+                delta = now - then;
+                if (delta < interval) return;
+                ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+                then = now - (delta % interval);
+            };
+            requestAnimationFrame(frame);
+        }
+
         window.addEventListener('resize', resize);
         resize();
     }, []);

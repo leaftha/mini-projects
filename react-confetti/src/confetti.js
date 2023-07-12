@@ -43,6 +43,9 @@ const Confetti = () => {
                 for (let i = particles.length - 1; i >= 0; i--) {
                     particles[i].update();
                     particles[i].draw(ctx);
+                    if (particles[i].opacity < 0) {
+                        particles.splice(i, 1);
+                    }
                 }
                 then = now - (delta % interval);
             };

@@ -65,6 +65,16 @@ function init() {
   pointLight.position.z = 4;
   scene.add(pointLight);
 
+  document.addEventListener("mousemove", animateParticle);
+
+  let mouseX = 0;
+  let mouseY = 0;
+
+  function animateParticle(e) {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  }
+
   const clock = new THREE.Clock();
 
   render();
@@ -74,6 +84,9 @@ function init() {
 
     // Update objects
     sphere.rotation.y = 0.5 * elapsedTime;
+
+    particlesMesh.rotation.x = mouseY * (elapsedTime * 0.00008);
+    particlesMesh.rotation.y = mouseX * (elapsedTime * 0.00008);
     renderer.render(scene, camera);
 
     requestAnimationFrame(render);

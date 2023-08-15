@@ -13,6 +13,9 @@ function init() {
 
   renderer.setSize(window.innerWidth, window.innerHeight);
 
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(new THREE.Color("#21282a"), 1);
+
   const scene = new THREE.Scene();
 
   const camera = new THREE.PerspectiveCamera(
@@ -34,7 +37,7 @@ function init() {
   const posArray = new Float32Array(count * 3);
 
   for (let i = 0; i < count; i++) {
-    posArray[i] = (Math.random() - 0.5) * 5;
+    posArray[i] = (Math.random() - 0.5) * (Math.random() * 5);
   }
 
   particlesGeometry.setAttribute(

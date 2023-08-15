@@ -85,8 +85,11 @@ function init() {
     // Update objects
     sphere.rotation.y = 0.5 * elapsedTime;
 
-    particlesMesh.rotation.x = mouseY * (elapsedTime * 0.00008);
-    particlesMesh.rotation.y = mouseX * (elapsedTime * 0.00008);
+    if (mouseX > 0) {
+      particlesMesh.rotation.x = mouseY * (elapsedTime * 0.00008);
+      particlesMesh.rotation.y = mouseX * (elapsedTime * 0.00008);
+    }
+
     renderer.render(scene, camera);
 
     requestAnimationFrame(render);

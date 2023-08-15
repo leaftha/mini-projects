@@ -22,18 +22,19 @@ function init() {
     500
   );
 
-  camera.position.z = 5;
+  camera.position.z = 3;
 
   // Objects
   const geometry = new THREE.TorusGeometry(0.7, 0.2, 16, 100);
 
   // Materials
 
-  const material = new THREE.MeshBasicMaterial();
-  material.color = new THREE.Color(0xff0000);
+  const material = new THREE.PointsMaterial({
+    size: 0.005,
+  });
 
   // Mesh
-  const sphere = new THREE.Mesh(geometry, material);
+  const sphere = new THREE.Points(geometry, material);
   scene.add(sphere);
 
   // Lights

@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { gsap } from 'gsap';
 import { CSSRulePlugin } from 'gsap/all';
+import { convertLatLngToPos } from './utile';
 
 window.addEventListener('load', function () {
     init();

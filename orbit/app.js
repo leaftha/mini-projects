@@ -1,13 +1,11 @@
+import { randomNumBetween } from "../orbit/utils.js";
 import CanvasSetting from "./CanvasSetting.js";
-
-function toRadian(d) {
-  // radian으로 변환하는 함수, 각도를 파라미터로 넣는다
-  return (d * Math.PI) / 180;
-}
+import Orbit from "./orbit.js";
 
 class Canvas extends CanvasSetting {
   constructor() {
     super();
+    this.orbit = [];
   }
 
   init() {
@@ -21,34 +19,37 @@ class Canvas extends CanvasSetting {
     this.canvas.style.height = this.canvasHeight + "px";
   }
 
-  create(x, y, start, dely) {
-    this.ctx.beginPath();
-    this.ctx.arc(x, y, 20, toRadian(start), toRadian(dely));
-    // this.ctx.fillStyle = "blue";
-    this.ctx.stroke();
-    this.ctx.closePath();
+  createOrbit() {
+    let x = this.canvasWidth / 2;
+    let y = this.canvasHeight / 4;
+
+    for (let i = 0; i < 500; i++) {
+      let size = randomNumBetween(10, 1000);
+      let start = randomNumBetween(20, 360);
+      // console.log(start);
+      let length = randomNumBetween(10, 40);
+      let end = start;
+      this.orbit.push(
+        new Orbit(x, y, size, start, end, 0.04, length, "#ffffff")
+      );
+      this.orbit[i].draw();
+    }
   }
 
   render() {
     let now, delta;
     let them = Date.now();
-    let b = Math.floor(Math.random() * 180);
-    let a = b + 20;
-    let x = 100;
-    let y = 100;
 
     const frame = () => {
       requestAnimationFrame(frame);
-      this.ctx.fillStyle = "#ffffff";
-      this.ctx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
-
-      this.create(x, y, b, a);
-      a += 0.4;
-      b += 0.4;
-
       now = Date.now();
       delta = now - them;
-
+      // this.ctx.fillStyle = "#111111";
+      this.ctx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
+      this.createOrbit();
+      this.orbit.forEach((item, idx) => {
+        item.update();
+      });
       if (delta < this.interval) return;
     };
 

@@ -29,7 +29,7 @@ export default class Orbit extends CanvasSetting {
     this.ctx.strokeStyle = `rgba(${this.r},${this.g},${this.b},${this.opacity})`;
     this.ctx.lineCap = "round";
     this.ctx.lineJoin = "round";
-    this.ctx.lineWidth = 3;
+    this.ctx.lineWidth = 1.5;
 
     this.ctx.beginPath();
     this.ctx.arc(

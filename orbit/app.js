@@ -23,14 +23,14 @@ class Canvas extends CanvasSetting {
   createOrbit() {
     let x = this.canvasWidth / 2;
     let y = this.canvasHeight / 3;
-    for (let i = 0; i < 900; i++) {
-      let size = randomNumBetween(20, 1000);
-      let start = randomNumBetween(20, 360);
+    for (let i = 0; i < 1000; i++) {
+      let size = randomNumBetween(15, this.canvasWidth / 1.5);
+      let start = randomNumBetween(0, 360);
       let length = randomNumBetween(10, 30);
-      let opacity = randomNumBetween(0.1, 0.5);
-      let end = start - 0.3;
+      let opacity = randomNumBetween(0.01, 1);
+      let end = start;
       this.orbit.push(
-        new Orbit(x, y, size, start, end, 0.04, length, 255, 255, 255, opacity)
+        new Orbit(x, y, size, start, end, 0.03, length, 255, 255, 255, opacity)
       );
       this.orbit[i].draw();
     }

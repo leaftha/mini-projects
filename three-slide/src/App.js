@@ -1,7 +1,6 @@
 import "./App.css";
 import { Canvas } from "@react-three/fiber";
 import Plane from "./componencts/Plane";
-import { useState } from "react";
 
 function App() {
   return (
@@ -14,6 +13,9 @@ function App() {
         <Plane num={5} />
         <Plane num={6} />
         <Plane num={7} />
+        <Plane num={8} />
+        <Plane num={9} />
+        <Plane num={10} />
       </Canvas>
     </div>
   );

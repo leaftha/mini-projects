@@ -1,38 +1,32 @@
-import { useFrame, useThree } from "@react-three/fiber";
-import { useRef } from "react";
+import { useFrame, useThree } from '@react-three/fiber';
+import { useRef, useState } from 'react';
 
 function Plane({ num }) {
-  const refMesh = useRef();
-  const { camera } = useThree();
+    const refMesh = useRef();
+    const { camera } = useThree();
+    const [x, setX] = useState(0);
+    const [z, setZ] = useState(0);
+    const radius = 50;
+    const angleStep = (Math.PI * 2) / 6;
+    let angle = angleStep * num;
 
-  console.log(camera.position);
+    useFrame((state, delta) => {
+        angle += delta;
+        const x = Math.cos(angle) * radius + camera.position.x;
+        const z = Math.sin(angle) * radius + camera.position.z;
+        refMesh.current.position.set(x, 0, z);
+        refMesh.current.lookAt(camera.position);
+    });
 
-  // console.log(camera);
-  // const angleStep = (2 * Math.PI) / 10;
-  const angle = (num / 10) * Math.PI * 2;
-  const x = 5 * Math.cos(angle);
-  const z = 5 * Math.sin(angle);
-  useFrame((state, delta) => {
-    // refMesh.current.position.x += 0.01;
-    // refMesh.current.position.y = camera.position.y;
-    // refMesh.current.position.z = camera.position.z;
-    // refMesh.current.lookAt(
-    //   camera.position.x,
-    //   camera.position.y,
-    //   camera.position.z
-    // );
-  });
-  // console.log(num);
-
-  return (
-    <>
-      <directionalLight position={[1, 1, 1]} />
-      <mesh ref={refMesh} scale={2} position={[x, 0, z]}>
-        <planeGeometry />
-        {/* <meshStandardMaterial color={"#F2BED1"} /> */}
-      </mesh>
-    </>
-  );
+    return (
+        <>
+            <directionalLight position={[1, 1, 1]} />
+            <mesh ref={refMesh} scale={1}>
+                <planeGeometry args={[10, 10, 10]} />
+                <meshStandardMaterial color={'#F2BED1'} />
+            </mesh>
+        </>
+    );
 }
 
 export default Plane;

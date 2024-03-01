@@ -1,5 +1,6 @@
-import { useFrame, useThree } from "@react-three/fiber";
+import { useFrame, useLoader, useThree } from "@react-three/fiber";
 import { useRef, useState } from "react";
+import { TextureLoader } from "three/src/loaders/TextureLoader";
 
 function Plane({ num, rotationAngle }) {
   const refMesh = useRef();
@@ -21,12 +22,15 @@ function Plane({ num, rotationAngle }) {
     setCurrentAngle(newAngle);
   });
 
+  const texture = useLoader(TextureLoader, `texture/${num}.jpg`);
+  // console.log(texture);
+
   return (
     <>
       <directionalLight ref={lightMesh} position={[0, 1, 1]} />
       <mesh ref={refMesh} scale={3}>
         <planeGeometry args={[20, 20]} />
-        <meshStandardMaterial color={"#F2BED1"} />
+        <meshStandardMaterial map={texture} />
       </mesh>
     </>
   );

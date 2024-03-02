@@ -1,6 +1,7 @@
 import "./App.css";
 import { Canvas } from "@react-three/fiber";
 import Plane from "./componencts/Plane";
+import Object from "./componencts/Object";
 import { useState } from "react";
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
         <Plane num={5} rotationAngle={rotationAngle} />
         {/* Minion */}
         <Plane num={6} rotationAngle={rotationAngle} />
+        <Object />
       </Canvas>
     </div>
   );

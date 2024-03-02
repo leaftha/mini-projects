@@ -23,7 +23,6 @@ function Plane({ num, rotationAngle }) {
   });
 
   const texture = useLoader(TextureLoader, `texture/${num}.jpg`);
-  // console.log(texture);
 
   return (
     <>

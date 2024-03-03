@@ -25,7 +25,6 @@ function App() {
     }
   };
 
-  console.log(currentNum);
   return (
     <div className="App">
       <button onClick={Prevrortaion}>prev</button>
@@ -44,7 +43,7 @@ function App() {
         <Plane num={5} rotationAngle={rotationAngle} />
         {/* Minion */}
         <Plane num={6} rotationAngle={rotationAngle} />
-        <Object />
+        <Object num={currentNum} />
       </Canvas>
     </div>
   );

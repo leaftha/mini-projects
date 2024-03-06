@@ -16,7 +16,81 @@ function Object({ num }) {
   const refMesh6 = useRef();
 
   useFrame((state, delta) => {
-    // refMesh1.current.rotation.y += delta;
+    refMesh1.current.renderOrder = 0;
+    refMesh2.current.renderOrder = 0;
+    refMesh3.current.renderOrder = 0;
+    refMesh4.current.renderOrder = 0;
+    refMesh5.current.renderOrder = 0;
+    refMesh6.current.renderOrder = 0;
+
+    if (num === 1) {
+      refMesh1.current.traverse((child) => {
+        if (child.isMesh) {
+          child.material.opacity += delta;
+          if (child.material.opacity > 1) {
+            child.material.opacity = 1;
+          }
+        }
+      });
+      refMesh1.current.rotation.y += delta;
+      refMesh1.current.renderOrder = -1;
+    } else if (num === 2) {
+      refMesh2.current.traverse((child) => {
+        if (child.isMesh) {
+          child.material.opacity += delta;
+          if (child.material.opacity > 1) {
+            child.material.opacity = 1;
+          }
+        }
+      });
+      refMesh2.current.rotation.y += delta;
+      refMesh2.current.renderOrder = -1;
+    } else if (num === 3) {
+      refMesh3.current.traverse((child) => {
+        if (child.isMesh) {
+          child.material.opacity += delta;
+          if (child.material.opacity > 1) {
+            child.material.opacity = 1;
+          }
+        }
+      });
+      refMesh3.current.rotation.y += delta;
+      refMesh3.current.renderOrder = -1;
+    } else if (num === 4) {
+      refMesh4.current.traverse((child) => {
+        if (child.isMesh) {
+          child.material.opacity += delta;
+          if (child.material.opacity > 1) {
+            child.material.opacity = 1;
+          }
+        }
+      });
+      refMesh4.current.rotation.y += delta;
+      refMesh4.current.renderOrder = -1;
+    } else if (num === 5) {
+      refMesh5.current.traverse((child) => {
+        if (child.isMesh) {
+          child.material.opacity += delta;
+          if (child.material.opacity > 1) {
+            child.material.opacity = 1;
+          }
+        }
+      });
+      refMesh5.current.rotation.y += delta;
+      refMesh5.current.renderOrder = -1;
+    } else if (num === 6) {
+      refMesh6.current.traverse((child) => {
+        if (child.isMesh) {
+          child.material.opacity += delta;
+          if (child.material.opacity > 1) {
+            child.material.opacity = 1;
+          }
+        }
+      });
+      refMesh6.current.rotation.y += delta;
+
+      refMesh6.current.renderOrder = -1;
+    }
   });
 
   // 반투명 효과를 위해 모델의 material을 반복하여 수정
@@ -103,7 +177,7 @@ function Object({ num }) {
       />
       <primitive
         ref={refMesh6}
-        scale={0.03}
+        scale={0.02}
         position-y={-3}
         object={model6.scene}
       />

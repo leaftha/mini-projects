@@ -26,7 +26,7 @@ function Plane({ num, rotationAngle }) {
 
   return (
     <>
-      <directionalLight ref={lightMesh} position={[0, 1, 1]} />
+      <directionalLight ref={lightMesh} position={[0.5, 3, 1]} />
       <mesh ref={refMesh} scale={3}>
         <planeGeometry args={[20, 20]} />
         <meshStandardMaterial map={texture} />

@@ -31,6 +31,8 @@ function App() {
       <button onClick={Nextrortaion}>next</button>
 
       <Canvas>
+        <color attach="background" args={["#000"]} />
+
         {/* modal */}
         <Plane num={1} rotationAngle={rotationAngle} />
         {/* dragon */}

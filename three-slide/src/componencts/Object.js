@@ -144,6 +144,8 @@ function Object({ num }) {
 
   return (
     <>
+      <pointLight position={[0, 1, 1]} />
+
       {/* <Environment preset="sunset" /> */}
       <primitive
         ref={refMesh1}

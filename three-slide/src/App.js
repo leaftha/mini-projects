@@ -27,8 +27,14 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={Prevrortaion}>prev</button>
-      <button onClick={Nextrortaion}>next</button>
+      <div className="btns">
+        <button className="Btn" onClick={Prevrortaion}>
+          {"<"}
+        </button>
+        <button className="Btn" onClick={Nextrortaion}>
+          {">"}
+        </button>
+      </div>
 
       <Canvas>
         <color attach="background" args={["#000"]} />

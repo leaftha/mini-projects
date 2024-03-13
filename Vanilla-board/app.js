@@ -17,6 +17,7 @@ fetch("./MOCK_DATA.json")
       ul.appendChild(list);
     }
 
+    // 카테고리를 select 태그에 option 태그로 넣기
     for (let category of categorys) {
       let option = document.createElement("option");
       option.setAttribute("value", category);
@@ -24,4 +25,4 @@ fetch("./MOCK_DATA.json")
       select.appendChild(option);
     }
   })
-  .catch((err) => console.err(err));
+  .catch((err) => console.error(err));

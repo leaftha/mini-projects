@@ -62,7 +62,34 @@ select.addEventListener("change", (e) => {
 
 formBtn.addEventListener("click", () => {
   const form = document.querySelector(".form");
-  for (let i = 0; i < form.length; i++) {
-    console.log(form[i].value);
-  }
+  let inputData = {
+    id: `${form[0].value}`,
+    first_name: `${form[1].value}`,
+    last_name: `${form[2].value}`,
+    email: `${form[3].value}`,
+  };
+
+  // json파일에 데이터 보내기
+  // 하지만 자바스크립트로 로컬 json 을 수정하는건 보안상 추천하지 않아
+  // 작동하지는 않는다.
+  fetch("./MOCK_DATA.json", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(inputData),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Data added successfully:", data);
+    })
+    .catch((error) => {
+      console.error("Error adding data:", error);
+    });
+  console.log(JSON.stringify(inputData));
 });

@@ -1,5 +1,6 @@
 const ul = document.querySelector(".lists");
 const select = document.querySelector(".select");
+const formBtn = document.querySelector(".formBtn");
 let data = []; // 데이터를 전역 변수로 저장하여 나중에 필터링에 사용
 
 fetch("./MOCK_DATA.json")
@@ -56,5 +57,12 @@ select.addEventListener("change", (e) => {
       list.innerHTML = `${user.id} - ${user.email} - ${user.category}`;
       ul.appendChild(list);
     }
+  }
+});
+
+formBtn.addEventListener("click", () => {
+  const form = document.querySelector(".form");
+  for (let i = 0; i < form.length; i++) {
+    console.log(form[i].value);
   }
 });

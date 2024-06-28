@@ -4,9 +4,10 @@ import styles from "./page.module.css";
 
 import { useState } from "react";
 
-import Project from "./components/project";
+import Project from "./components/Project/project";
+import Landing from "./components/Landing/landing"
 
-import Modal from "./components/modal";
+import Modal from "./components/Project/modal";
 
 const projects = [
   {
@@ -44,9 +45,9 @@ const projects = [
 
 export default function Home() {
   const [modal, setModal] = useState({ active: false, index: 0 });
-  console.log(modal);
   return (
     <main className={styles.main}>
+      <Landing/>
       <div className={styles.body}>
         {projects.map((project, idx) => {
           return (

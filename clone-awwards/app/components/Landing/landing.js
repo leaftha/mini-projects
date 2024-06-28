@@ -45,12 +45,12 @@ export default function Landing() {
       }
     return (
         <motion.main variants={slideUp} inherit="inherit" animate="enter" className={style.main}>
-         <div className={style.sliderContainer}>
-            <div ref={slider} className={style.slider}>
-                <p ref={first}>Freelance Developer -</p>
-                <p ref={second}>Freelance Developer -</p>
+            <div className={style.sliderContainer}>
+                <div ref={slider} className={style.slider}>
+                    <p ref={first}>프론트엔드 개발자 -</p>
+                    <p ref={second}>프론트엔드 개발자 -</p>
+                </div>
             </div>
-        </div>
         </motion.main>
     )
 }

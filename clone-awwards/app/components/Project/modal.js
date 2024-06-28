@@ -55,6 +55,7 @@ export default function index({ modal, projects }) {
 
     window.addEventListener("mousemove", (e) => {
       const { clientX, clientY } = e;
+      console.log(clientX,clientY)
       moveContainerX(clientX);
       moveContainerY(clientY);
       moveCursorX(clientX);

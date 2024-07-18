@@ -1,29 +1,25 @@
 import { useState } from "react";
 import classes from "../styles/Inputwindow.module.css";
+import uniqid from "uniqid";
 
-const Inputwindow = ({ updata }) => {
-  const [input, setInput] = useState("");
-
-  const inputHandler = (e) => {
-    setInput(e.target.value);
-  };
-
-  const submitHanler = (e) => {
-    e.preventDefault();
-    if (input === "") return;
-    updata(input);
-    setInput("");
-  };
+const Inputwindow = ({ onAdd }) => {
+  const [text, setText] = useState("");
   return (
-    <form className={classes.form} onSubmit={submitHanler}>
+    <>
       <input
-        className={classes.input}
-        type="text"
-        onChange={inputHandler}
-        value={input}
+        placeholder="Add task"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
       />
-      <button>Add</button>
-    </form>
+      <button
+        onClick={() => {
+          setText("");
+          onAdd(text, uniqid());
+        }}
+      >
+        Add
+      </button>
+    </>
   );
 };
 

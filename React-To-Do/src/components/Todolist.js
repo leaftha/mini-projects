@@ -1,17 +1,45 @@
-import TodoItem from "./TodoItem";
-
 import classes from "../styles/Todolist.module.css";
+import { useState } from "react";
 
-const Todolist = ({ delet, text }) => {
+export default function Todolist({ tasks, onDelete, onChange }) {
+  const [isEditing, setIsEditing] = useState(false);
+
   return (
-    <ul className={`${classes.ul} ${text.length === 0 ? "" : classes.item}`}>
-      {text.map((data) => (
-        <TodoItem onDelet={delet} key={data.id} id={data.id}>
-          {data.text}
-        </TodoItem>
+    <ul className={classes.ul}>
+      {tasks.map((task, idx) => (
+        <label key={idx}>
+          <input
+            type="checkbox"
+            checked={task.done}
+            onChange={(e) => {
+              onChange({
+                ...task,
+                done: e.target.checked,
+              });
+            }}
+          />
+          {isEditing ? (
+            <>
+              <input
+                value={task.text}
+                onChange={(e) => {
+                  onChange({
+                    ...task,
+                    text: e.target.value,
+                  });
+                }}
+              />
+              <button onClick={() => setIsEditing(false)}>Save</button>
+            </>
+          ) : (
+            <>
+              {task.text}
+              <button onClick={() => setIsEditing(true)}>Edit</button>
+            </>
+          )}
+          <button onClick={() => onDelete(task.id)}>Delete</button>
+        </label>
       ))}
     </ul>
   );
-};
-
-export default Todolist;
+}

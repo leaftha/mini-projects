@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import classes from "../styles/Inputwindow.module.css";
 import uniqid from "uniqid";
+import { DispatchContext } from "../taskConext";
 
 const Inputwindow = ({ onAdd }) => {
   const [text, setText] = useState("");
+  const dispatch = useContext(DispatchContext)
   return (
     <>
       <input
@@ -14,7 +16,11 @@ const Inputwindow = ({ onAdd }) => {
       <button
         onClick={() => {
           setText("");
-          onAdd(text, uniqid());
+          dispatch({
+            type: "add",
+            id : uniqid(),
+            text: text,
+          })
         }}
       >
         Add

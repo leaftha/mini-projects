@@ -1,8 +1,11 @@
 import classes from "../styles/Todolist.module.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { DispatchContext, TaskContext } from "../taskConext";
 
-export default function Todolist({ tasks, onDelete, onChange }) {
+export default function Todolist({  onDelete, onChange }) {
   const [isEditing, setIsEditing] = useState(false);
+  const tasks = useContext(TaskContext)
+  const dispatch = useContext(DispatchContext)
 
   return (
     <ul className={classes.ul}>
@@ -12,9 +15,12 @@ export default function Todolist({ tasks, onDelete, onChange }) {
             type="checkbox"
             checked={task.done}
             onChange={(e) => {
-              onChange({
-                ...task,
-                done: e.target.checked,
+              dispatch({
+                type: "change",
+                task: {
+                  ...task,
+                  done: e.target.checked
+                }
               });
             }}
           />
@@ -23,9 +29,12 @@ export default function Todolist({ tasks, onDelete, onChange }) {
               <input
                 value={task.text}
                 onChange={(e) => {
-                  onChange({
-                    ...task,
-                    text: e.target.value,
+                  dispatch({
+                    type: "change",
+                    task: {
+                      ...task,
+                      text: e.target.value
+                    }
                   });
                 }}
               />
@@ -37,7 +46,12 @@ export default function Todolist({ tasks, onDelete, onChange }) {
               <button onClick={() => setIsEditing(true)}>Edit</button>
             </>
           )}
-          <button onClick={() => onDelete(task.id)}>Delete</button>
+          <button onClick={() => {
+            dispatch({
+              type : "delete",
+              id: task.id,
+            })
+          }}>Delete</button>
         </label>
       ))}
     </ul>

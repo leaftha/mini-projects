@@ -46,14 +46,42 @@ class ProjectInput {
     this.attach();
   }
 
+  private gatherUerInput(): [string, string, number] | void {
+    const enterdTilte = this.titleInputElement.value;
+    const enterdDescription = this.descriptionInputElement.value;
+    const enterdPeople = this.peopleInputElement.value;
+
+    if (
+      enterdTilte.trim().length === 0 ||
+      enterdDescription.trim().length === 0 ||
+      enterdPeople.trim().length === 0
+    ) {
+      alert("빈칸 존재");
+      return;
+    } else {
+      return [enterdTilte, enterdDescription, +enterdPeople];
+    }
+  }
+
+  private clearInput() {
+    this.titleInputElement.value = "";
+    this.descriptionInputElement.value = "";
+    this.peopleInputElement.value = "";
+  }
+
   @autobind
   private submitHandler(e: Event) {
     e.preventDefault();
-    console.log(this.titleInputElement.value);
+    const userInput = this.gatherUerInput();
+    if (Array.isArray(userInput)) {
+      const [title, desc, people] = userInput;
+      console.log(title, desc, people);
+      this.clearInput();
+    }
   }
 
   private configure() {
-    this.element.addEventListener("submit", this.submitHandler.bind(this));
+    this.element.addEventListener("submit", this.submitHandler);
   }
 
   private attach() {

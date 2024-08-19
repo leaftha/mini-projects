@@ -1,8 +1,9 @@
 namespace App {
   export enum ProjectStatus {
-    Acive,
-    Finished,
+    Active,
+    Finished
   }
+
   export class Project {
     constructor(
       public id: string,

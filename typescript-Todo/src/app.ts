@@ -9,6 +9,8 @@ interface TodoType {
   worked: boolean;
 }
 
+const list: [] = [];
+
 function addHandler(e: Event) {
   e.preventDefault();
 
@@ -23,9 +25,21 @@ function addHandler(e: Event) {
   const check = document.createElement("input");
   newTitle.textContent = todo.text;
   check.type = "checkbox";
+  check.addEventListener("change", () => {
+    console.log("check");
+    todo.worked = !todo.worked;
+
+    if (todo.worked) {
+      newTitle.classList.add("worked");
+    } else {
+      newTitle.classList.remove("worked");
+    }
+  });
   newLi.append(newTitle, check);
   todoUl.append(newLi);
+
   todoInput.value = "";
 }
 
 todoForm.addEventListener("submit", addHandler);
+console.log(list);

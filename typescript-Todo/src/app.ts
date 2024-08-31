@@ -23,7 +23,9 @@ function addHandler(e: Event) {
   const newLi = document.createElement("li");
   const newTitle = document.createElement("h1");
   const check = document.createElement("input");
+  const deleteBtn = document.createElement("button");
   newTitle.textContent = todo.text;
+  deleteBtn.textContent = "X";
   check.type = "checkbox";
   check.addEventListener("change", () => {
     console.log("check");
@@ -35,7 +37,11 @@ function addHandler(e: Event) {
       newTitle.classList.remove("worked");
     }
   });
-  newLi.append(newTitle, check);
+
+  deleteBtn.addEventListener("click", () => {
+    todoUl.removeChild(newLi);
+  });
+  newLi.append(newTitle, check, deleteBtn);
   todoUl.append(newLi);
 
   todoInput.value = "";

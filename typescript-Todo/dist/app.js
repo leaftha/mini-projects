@@ -14,7 +14,9 @@ function addHandler(e) {
     var newLi = document.createElement("li");
     var newTitle = document.createElement("h1");
     var check = document.createElement("input");
+    var deleteBtn = document.createElement("button");
     newTitle.textContent = todo.text;
+    deleteBtn.textContent = "X";
     check.type = "checkbox";
     check.addEventListener("change", function () {
         console.log("check");
@@ -26,7 +28,10 @@ function addHandler(e) {
             newTitle.classList.remove("worked");
         }
     });
-    newLi.append(newTitle, check);
+    deleteBtn.addEventListener("click", function () {
+        todoUl.removeChild(newLi);
+    });
+    newLi.append(newTitle, check, deleteBtn);
     todoUl.append(newLi);
     todoInput.value = "";
 }

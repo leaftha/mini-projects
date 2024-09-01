@@ -4,37 +4,46 @@ var todoForm = document.querySelector(".todo-Form");
 var todoInput = document.querySelector(".todo-Input");
 var todoUl = document.querySelector(".todo-Ul");
 var list = [];
-function addHandler(e) {
-    e.preventDefault();
-    var todo = {
-        id: Math.random(),
-        text: todoInput.value,
-        worked: false,
-    };
-    var newLi = document.createElement("li");
-    var newTitle = document.createElement("h1");
-    var check = document.createElement("input");
-    var deleteBtn = document.createElement("button");
-    newTitle.textContent = todo.text;
-    deleteBtn.textContent = "X";
-    check.type = "checkbox";
-    check.addEventListener("change", function () {
-        console.log("check");
-        todo.worked = !todo.worked;
+function renderList() {
+    todoUl.innerHTML = "";
+    list.forEach(function (todo) {
+        var newLi = document.createElement("li");
+        var newTitle = document.createElement("h1");
+        var check = document.createElement("input");
+        var deleteBtn = document.createElement("button");
+        newTitle.textContent = todo.text;
+        deleteBtn.textContent = "X";
+        check.type = "checkbox";
+        check.checked = todo.worked;
         if (todo.worked) {
             newTitle.classList.add("worked");
         }
-        else {
-            newTitle.classList.remove("worked");
-        }
+        check.addEventListener("change", function () {
+            todo.worked = !todo.worked;
+            renderList();
+        });
+        deleteBtn.addEventListener("click", function () {
+            list.splice(list.indexOf(todo), 1);
+            renderList();
+        });
+        newLi.append(newTitle, check, deleteBtn);
+        todoUl.append(newLi);
     });
-    deleteBtn.addEventListener("click", function () {
-        todoUl.removeChild(newLi);
-    });
-    newLi.append(newTitle, check, deleteBtn);
-    todoUl.append(newLi);
+}
+function addHandler(e) {
+    e.preventDefault();
+    if (todoInput.value.trim() === "") {
+        alert("Todo 내용을 입력하세요!");
+        return;
+    }
+    var todo = {
+        id: Date.now(),
+        text: todoInput.value,
+        worked: false,
+    };
+    list.push(todo);
+    renderList();
     todoInput.value = "";
 }
 todoForm.addEventListener("submit", addHandler);
-console.log(list);
 //# sourceMappingURL=app.js.map

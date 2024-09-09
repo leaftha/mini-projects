@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import classes from "../styles/Inputwindow.module.css";
 import uniqid from "uniqid";
 import { DispatchContext } from "../taskConext";
@@ -6,6 +6,10 @@ import { DispatchContext } from "../taskConext";
 const Inputwindow = ({ onAdd }) => {
   const [text, setText] = useState("");
   const dispatch = useContext(DispatchContext)
+  console.log("A")
+  useEffect(()=> {
+     console.log("B")
+    },[])
   return (
     <>
       <input
